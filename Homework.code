@@ -1,0 +1,20 @@
+const changeProposal = (proposals) => {
+  return proposals.map(({ word, divisibility }) => {
+    return word
+      .split('')
+      .map((char, index) => {
+        const shouldUppercase = divisibility === 'чётный' ? (index % 2 !== 0) : (index % 2 === 0);
+        return shouldUppercase ? char.toUpperCase() : char.toLowerCase();
+      })
+      .join('');
+  });
+};
+
+const result = changeProposal([
+  { word: 'чётный текст', divisibility: 'чётный' },
+  { word: 'нечётный текст', divisibility: 'нечётный' },
+  { word: 'этот текст тоже должен быть с каждым большим чётным символом', divisibility: 'чётный' },
+  { word: 'а у этого текста должен быть каждый нечётный большой символ', divisibility: 'нечётный' },
+]);
+
+console.log(result);
